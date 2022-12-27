@@ -2,23 +2,26 @@
 #include "Queue.h"
 using namespace std;
 
-Queue::Queue()
+template <typename T>
+Queue<T>::Queue()
 {
     front = NULL;
     count = 0;
 }
-
-bool Queue::queueIsEmpty()
+template <typename T>
+bool Queue<T>::queueIsEmpty()
 {
     return count == 0;
 }
 
-int Queue::queueLength()
+template <typename T>
+int Queue<T>::queueLength()
 {
     return count;
 }
 
-void Queue::enqueue(int data)
+template <typename T>
+void Queue<T>::enqueue(T data)
 {
     Node *node = new Node;
     node->data = data;
@@ -36,7 +39,8 @@ void Queue::enqueue(int data)
     count++;
 }
 
-void Queue::dequeue(int &data)
+template <typename T>
+void Queue<T>::dequeue(T &data)
 {
     if (queueIsEmpty())
     {
@@ -52,16 +56,20 @@ void Queue::dequeue(int &data)
     }
 }
 
-void Queue::makeQueueEmpty(){
-    while (front!=NULL)
+template <typename T>
+void Queue<T>::makeQueueEmpty()
+{
+    while (front != NULL)
     {
         Node *temp = front;
         front = front->next;
         delete temp;
         count--;
-    }   
+    }
 }
 
-Queue::~Queue(){
+template <typename T>
+Queue<T>::~Queue()
+{
     makeQueueEmpty();
 }
