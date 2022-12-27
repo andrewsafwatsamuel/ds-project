@@ -23,4 +23,5 @@ public:
     void setQuantity(int);
 };
 
+#include "Product.cpp"
 #endif
