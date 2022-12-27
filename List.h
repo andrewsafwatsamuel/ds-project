@@ -9,12 +9,10 @@ class List
 private:
     struct Node
     {
-        int key;
         T data;
         Node *next;
     };
     Node *head, *cursor, *previous;
-    int recursive_list_size(Node *);
 
 public:
     List();
@@ -24,9 +22,9 @@ public:
     void toFirst();
     bool atFirst();
     void advance();
-    void insertFirst(int, T);
-    void insertAfter(int, T);
-    void insertBefore(int, T);
+    void insertFirst(T);
+    void insertAfter(T);
+    void insertBefore(T);
     void deleteFirst();
     void deleteCurrent();
     void deleteNode();
@@ -36,12 +34,8 @@ public:
     int listSize();
     bool atEnd();
     void updateData(const T &);
-    void retireveData(T &, int &);
-    void retrieveKey(int &);
+    void retireveData(T &);
     void insertEnd(int, T);
-    void traverse();
-    int recursiveListSize();
-    void rearrange();
 };
 
 #include "List.cpp"

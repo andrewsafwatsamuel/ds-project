@@ -49,10 +49,9 @@ void List<T>::advance()
 }
 
 template <typename T>
-void List<T>::insertFirst(int key, T data)
+void List<T>::insertFirst(T data)
 {
     Node *newNode = new Node;
-    newNode->key = key;
     newNode->data = data;
     newNode->next = head;
     head = newNode;
@@ -60,10 +59,9 @@ void List<T>::insertFirst(int key, T data)
 }
 
 template <typename T>
-void List<T>::insertAfter(int key, T data)
+void List<T>::insertAfter(T data)
 {
     Node *newNode = new Node;
-    newNode->key = key;
     newNode->data = data;
     newNode->next = cursor->next;
     cursor->next = newNode;
@@ -71,10 +69,9 @@ void List<T>::insertAfter(int key, T data)
 }
 
 template <typename T>
-void List<T>::insertBefore(int key, T data)
+void List<T>::insertBefore(T data)
 {
     Node *newNode = new Node;
-    newNode->key = key;
     newNode->data = data;
     newNode->next = cursor;
     previous->next = newNode;
@@ -207,21 +204,11 @@ void List<T>::updateData(const T &data)
 }
 
 template <typename T>
-void List<T>::retireveData(T &data, int &key)
+void List<T>::retireveData(T &data)
 {
     if (!cursorIsEmpty())
     {
         data = cursor->data;
-        key = cursor->key;
-    }
-}
-
-template <typename T>
-void List<T>::retrieveKey(int &key)
-{
-    if (!cursorIsEmpty())
-    {
-        key = cursor->key;
     }
 }
 
@@ -235,59 +222,5 @@ void List<T>::insertEnd(int key, T data)
     else
     {
         insertAfter(key, data);
-    }
-}
-
-template <typename T>
-void List<T>::traverse()
-{
-    while (cursor != NULL)
-    {
-        cout << cursor->data << endl;
-        cursor = cursor->next;
-    }
-}
-
-template <typename T>
-int List<T>::recursive_list_size(Node *head)
-{
-    if (head == NULL)
-    {
-        return 0;
-    }
-    return 1 + recursive_list_size(head->next);
-}
-
-template <typename T>
-int List<T>::recursiveListSize()
-{
-    toFirst();
-    int count = recursive_list_size(head);
-    head = cursor;
-    return count;
-}
-
-template <typename T>
-void List<T>::rearrange()
-{
-    toFirst();
-    while (cursor!=NULL)
-    {
-        Node *inner = cursor->next;
-        while (inner != NULL)
-        {
-            if (inner->key < cursor->key)
-            {
-                Node temp = *cursor;
-                
-                cursor->data = inner->data;
-                cursor->key = inner->key;
-
-                inner->data = temp.data;
-                inner->key = temp.key;
-            }
-            inner = inner->next;
-        }
-        advance();
     }
 }

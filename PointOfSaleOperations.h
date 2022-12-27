@@ -20,4 +20,5 @@ public:
     void makeSellingOperation(int, int); // id, quantity
 };
 
+#include "PointOfSaleOperations.cpp"
 #endif
