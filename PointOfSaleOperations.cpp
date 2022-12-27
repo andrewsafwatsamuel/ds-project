@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include "Queue.h"
 #include "PointOfSale.h"
 #include "PointOfSaleOperations.h"
 #include "Customer.h"
@@ -12,12 +12,13 @@ PointOfSaleOperations::PointOfSaleOperations(PointOfSale PointOfSale)
 
 void PointOfSaleOperations::insertCustomer(Customer Customer)
 {
-    customers.push(Customer);
+    customers.enqueue(Customer);
 }
 
 void PointOfSaleOperations::removeCustomer()
 {
-    customers.pop();
+    Customer c;
+    customers.dequeue(c);
 }
 
 void PointOfSaleOperations::addProduct(Product product)
@@ -35,13 +36,17 @@ void PointOfSaleOperations::makeSellingOperation(int id, int quantity)
     Product product = pointOfSale.sellproduct(id, quantity);
     if (product.getQuantity() > 0)
     {
-        customers.front().addBoughtProduct(product);
+        Customer currentCustomer;
+        customers.getFront(currentCustomer);
+        currentCustomer.addBoughtProduct(product);
     }
 }
 
 void PointOfSaleOperations::makeReturnOperation(int id, int quantity)
 {
-    Product product = customers.front().returnBoughtProduct(id, quantity);
+    Customer currentCustomer;
+    customers.getFront(currentCustomer);
+    Product product = currentCustomer.returnBoughtProduct(id, quantity);
     if (product.getQuantity() > 0)
     {
         pointOfSale.returnproduct(product.getId(), product.getQuantity());

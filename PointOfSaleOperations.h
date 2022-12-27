@@ -1,13 +1,13 @@
 #ifndef PointOfSaleOperstions_H
 #define PointOfSaleOperstions_H
-#include <queue>
+#include "Queue.h"
 #include "Customer.h"
 #include "PointOfSale.h"
 
 class PointOfSaleOperations
 {
 private:
-    queue<Customer> customers;
+    Queue<Customer> customers;
     PointOfSale pointOfSale;
 
 public:

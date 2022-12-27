@@ -11,6 +11,7 @@ private:
     float price;
 
 public:
+    Product();
     Product(int id, string name, string description, float price, string expiryDate, string productionDate, int quantity);
     int getId();
     string getName();

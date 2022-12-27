@@ -73,3 +73,9 @@ Queue<T>::~Queue()
 {
     makeQueueEmpty();
 }
+
+template <typename T>
+void Queue<T>::getFront(T &data)
+{
+    data = front->data;
+}
