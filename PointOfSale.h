@@ -1,7 +1,7 @@
 #ifndef PointOfSale_H
 #define PointOfSale_H
 #include <iostream>
-#include <list>
+#include "List.h"
 #include "Product.h"
 using namespace std;
 
@@ -10,7 +10,7 @@ class PointOfSale
 private:
     int id;
     string name;
-    list<Product> productList;
+    List<Product> productList;
 
 public:
     PointOfSale();

@@ -5,10 +5,6 @@
 #include "Customer.h"
 using namespace std;
 
-PointOfSaleOperations::PointOfSaleOperations()
-{
-}
-
 PointOfSaleOperations::PointOfSaleOperations(PointOfSale PointOfSale)
 {
     this->pointOfSale = pointOfSale;
