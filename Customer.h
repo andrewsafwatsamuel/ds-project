@@ -15,8 +15,10 @@ public:
     Customer(int id, string name);
     string getName();
     int getId();
-    void addBoughtProduct(Product);
-    Product returnBoughtProduct(int, int); // id and quantity
+    void addBoughtProduct(Product &);
+    void returnBoughtProduct(int, int, Product&); // id and quantity
 };
 
+
+#include "Customer.cpp"
 #endif
