@@ -17,10 +17,11 @@ public:
     PointOfSale(int id, string name);
     string getName();
     int getId();
-    void AddProduct(Product);
-    void removeproduct(Product);
-    Product sellproduct(int, int); // id, quantity
-    void returnproduct(int, int);  // id, quantity
+    void addProduct(Product &);
+    void removeproduct(int);
+    void sellproduct(int, int, Product &);
+    void returnproduct(int, int);
 };
 
+#include "PointOfSale.cpp"
 #endif

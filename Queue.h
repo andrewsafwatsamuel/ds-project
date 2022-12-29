@@ -22,7 +22,7 @@ public:
     int queueLength();
     void enqueue(T);
     void dequeue(T &);
-    void getFront(T &)
+    void getFront(T &);
 };
 
 #include "Queue.cpp"
