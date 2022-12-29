@@ -2,7 +2,8 @@
 #include "Product.h"
 using namespace std;
 
-Product::Product(){
+Product::Product()
+{
 	this->id = -1;
 	this->name = "";
 	this->description = "";
@@ -61,5 +62,10 @@ int Product::getQuantity()
 
 void Product::setQuantity(int quantity)
 {
+	if (quantity < 0)
+	{
+		cout << "Invalid quantity" << endl;
+		return;
+	}
 	this->quantity = quantity;
 }
