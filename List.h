@@ -35,7 +35,7 @@ public:
     bool atEnd();
     void updateData(const T &);
     void retireveData(T &);
-    void insertEnd(int, T);
+    void insertEnd(T);
 };
 
 #include "List.cpp"

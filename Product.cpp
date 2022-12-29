@@ -2,6 +2,16 @@
 #include "Product.h"
 using namespace std;
 
+Product::Product(){
+	this->id = -1;
+	this->name = "";
+	this->description = "";
+	this->price = 0.0f;
+	this->expiryDate = "";
+	this->productionDate = "";
+	this->quantity = 0;
+}
+
 Product::Product(int id, string name, string description, float price, string expiryDate, string productionDate, int quantity)
 {
 	this->id = id;

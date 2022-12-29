@@ -213,14 +213,14 @@ void List<T>::retireveData(T &data)
 }
 
 template <typename T>
-void List<T>::insertEnd(int key, T data)
+void List<T>::insertEnd(T data)
 {
     if (listIsEmpty())
     {
-        insertFirst(key, data);
+        insertFirst(data);
     }
     else
     {
-        insertAfter(key, data);
+        insertAfter(data);
     }
 }
