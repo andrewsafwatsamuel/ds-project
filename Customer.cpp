@@ -44,7 +44,14 @@ void Customer::addBoughtProduct(Product &product)
 		}
 		boughtProducts.advance();
 	}
-	boughtProducts.insertFirst(&product);
+	boughtProducts.insertFirst(new Product(
+		product.getId(),
+		product.getName(),
+		product.getDescripton(),
+		product.getPrice(),
+		product.getExpiryDate(),
+		product.getProductionDate(),
+		product.getQuantity()));
 }
 
 void Customer::returnBoughtProduct(int id, int quantity, Product &result)

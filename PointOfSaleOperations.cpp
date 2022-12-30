@@ -5,52 +5,53 @@
 #include "Customer.h"
 using namespace std;
 
-PointOfSaleOperations::PointOfSaleOperations(PointOfSale&)
+PointOfSaleOperations::PointOfSaleOperations(PointOfSale &pointOfSale)
 {
-    this->pointOfSale = pointOfSale;
+    this->customers = Queue<Customer *>();
+    this->pointOfSale  = new PointOfSale(pointOfSale.getId(),pointOfSale.getName());
 }
 
-void PointOfSaleOperations::insertCustomer(Customer &customer)
+void PointOfSaleOperations::insertCustomer(Customer *customer)
 {
     customers.enqueue(customer);
 }
 
 void PointOfSaleOperations::removeCustomer()
 {
-    Customer c;
+    Customer *c;
     customers.dequeue(c);
 }
 
-void PointOfSaleOperations::addProduct(Product product)
+void PointOfSaleOperations::addProduct(Product &product)
 {
-    pointOfSale.addProduct(product);
+    pointOfSale->addProduct(product);
 }
 
-void PointOfSaleOperations::removeProduct(Product product)
+void PointOfSaleOperations::removeProduct(int id)
 {
-    pointOfSale.removeproduct(product.getId());
+    pointOfSale->removeproduct(id);
 }
 
 void PointOfSaleOperations::makeSellingOperation(int id, int quantity)
 {
     Product product;
-    pointOfSale.sellproduct(id, quantity, product);
+    pointOfSale->sellproduct(id, quantity, product);
     if (product.getQuantity() > 0)
     {
-        Customer currentCustomer;
+        Customer *currentCustomer;
         customers.getFront(currentCustomer);
-        currentCustomer.addBoughtProduct(product);
+        currentCustomer->addBoughtProduct(product);
     }
 }
 
 void PointOfSaleOperations::makeReturnOperation(int id, int quantity)
 {
-    Customer currentCustomer;
+    Customer *currentCustomer;
     customers.getFront(currentCustomer);
     Product product;
-    currentCustomer.returnBoughtProduct(id, quantity, product);
+    currentCustomer->returnBoughtProduct(id, quantity, product);
     if (product.getQuantity() > 0)
     {
-        pointOfSale.returnproduct(product.getId(), product.getQuantity());
+        pointOfSale->returnproduct(product.getId(), product.getQuantity());
     }
 }

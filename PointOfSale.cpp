@@ -41,7 +41,14 @@ void PointOfSale::addProduct(Product &product)
     }
     productList.advance();
   }
-  productList.insertFirst(&product);
+  productList.insertFirst(new Product(
+		product.getId(),
+		product.getName(),
+		product.getDescripton(),
+		product.getPrice(),
+		product.getExpiryDate(),
+		product.getProductionDate(),
+		product.getQuantity()));
 }
 
 void PointOfSale::removeproduct(int id)

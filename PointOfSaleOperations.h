@@ -7,15 +7,15 @@
 class PointOfSaleOperations
 {
 private:
-    Queue<Customer> customers;
-    PointOfSale pointOfSale;
+    Queue<Customer*> customers;
+    PointOfSale *pointOfSale;
 
 public:
     PointOfSaleOperations(PointOfSale&);
-    void insertCustomer(Customer&);
+    void insertCustomer(Customer*);
     void removeCustomer();
-    void addProduct(Product);
-    void removeProduct(Product);
+    void addProduct(Product&);
+    void removeProduct(int);
     void makeReturnOperation(int, int);  // id, quantity
     void makeSellingOperation(int, int); // id, quantity
 };
