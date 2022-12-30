@@ -56,18 +56,21 @@ int main()
 
     pointOfSaleOperations.insertCustomer(ahmed);
 
+    // Mostafa
     pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 500);
     pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 500);
     pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 500);
     pointOfSaleOperations.removeCustomer();
     cout << endl;
 
+    // Mohamed
     pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 500);
     pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 500);
     pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 500);
     pointOfSaleOperations.removeCustomer();
     cout << endl;
 
+    // Ahmed
     pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 10);
     pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 10);
     pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 10);
@@ -120,7 +123,7 @@ void printProductsPerCustomer(Customer *customer)
         cout << number++ << "- name: " << product->getName() << ", description: " << product->getDescripton() << ", quantity: " << product->getQuantity() << endl;
         boughtProducts.advance();
     }
-    cout<<endl;
+    cout << endl;
 }
 
 void releaseCustomers()
