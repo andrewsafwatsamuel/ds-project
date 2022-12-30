@@ -1,6 +1,5 @@
 #include <iostream>
 #include "PointOfSale.h"
-
 using namespace std;
 
 PointOfSale::PointOfSale()
@@ -10,20 +9,24 @@ PointOfSale::PointOfSale()
   id = -1;
   name = "";
 }
+
 PointOfSale::PointOfSale(int id, string name)
 {
   this->productList = List<Product>();
   this->id = id;
   this->name = name;
 }
+
 string PointOfSale::getName()
 {
   return name;
 }
+
 int PointOfSale::getId()
 {
   return id;
 }
+
 void PointOfSale::addProduct(Product &product)
 {
   productList.toFirst();
@@ -37,12 +40,11 @@ void PointOfSale::addProduct(Product &product)
       innerProduct.setQuantity(productQuantity);
       return;
     }
-
     productList.advance();
   }
-
-  productList.insertEnd(product);
+  productList.insertFirst(product);
 }
+
 void PointOfSale::removeproduct(int id)
 {
   productList.toFirst();
@@ -58,6 +60,7 @@ void PointOfSale::removeproduct(int id)
     productList.advance();
   }
 }
+
 void PointOfSale::sellproduct(int id, int qty, Product &product)
 {
   if (productList.listIsEmpty())
@@ -88,6 +91,7 @@ void PointOfSale::sellproduct(int id, int qty, Product &product)
     productList.advance();
   }
 } // id, quantity
+
 void PointOfSale::returnproduct(int id, int qty)
 {
   productList.toFirst();
