@@ -5,19 +5,12 @@
 #include "Customer.h"
 using namespace std;
 
+void fillPointOfSaleProducts(PointOfSale &);
+
 int main()
 {
     PointOfSale pointOfSale(1001, "market place");
-    Product *milk = new Product(1101, "almarai", "one litre", 15.5f, "1-12-2023", "1-12-2022", 1000);
-    Product *oil = new Product(1102, "cristal", "one litre", 40.5f, "1-12-2024", "1-12-2022", 1000);
-    Product *tea = new Product(1103, "libton", "one kilo", 15.5f, "1-12-2023", "1-12-2022", 1000);
-    Product *coffee = new Product(1104, "shaheen", "one kilo", 150.5f, "1-12-2023", "1-12-2022", 1000);
-    Product *molto = new Product(1105, "mega", "one piece", 5.5f, "1-12-2023", "1-12-2022", 1000);
-    pointOfSale.addProduct(milk);
-    pointOfSale.addProduct(oil);
-    pointOfSale.addProduct(tea);
-    pointOfSale.addProduct(coffee);
-    pointOfSale.addProduct(molto);
+    fillPointOfSaleProducts(pointOfSale);
     PointOfSaleOperations pointOfSaleOperations(pointOfSale);
     Customer andro(121, "Andro");
     Customer sara(122, "Sara");
@@ -31,4 +24,18 @@ int main()
     pointOfSaleOperations.insertCustomer(mohamed);
 
     return 0;
+}
+
+void fillPointOfSaleProducts(PointOfSale &pointOfSale)
+{
+    Product *milk = new Product(1101, "almarai", "one litre", 15.5f, "1-12-2023", "1-12-2022", 1000);
+    Product *oil = new Product(1102, "cristal", "one litre", 40.5f, "1-12-2024", "1-12-2022", 1000);
+    Product *tea = new Product(1103, "libton", "one kilo", 15.5f, "1-12-2023", "1-12-2022", 1000);
+    Product *coffee = new Product(1104, "shaheen", "one kilo", 150.5f, "1-12-2023", "1-12-2022", 1000);
+    Product *molto = new Product(1105, "mega", "one piece", 5.5f, "1-12-2023", "1-12-2022", 1000);
+    pointOfSale.addProduct(milk);
+    pointOfSale.addProduct(oil);
+    pointOfSale.addProduct(tea);
+    pointOfSale.addProduct(coffee);
+    pointOfSale.addProduct(molto);
 }
