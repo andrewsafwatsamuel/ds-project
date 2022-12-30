@@ -11,6 +11,7 @@ Customer *andro, *sara, *ahmed, *mostafa, *mohamed;
 void fillPointOfSaleProducts(PointOfSaleOperations &);
 void initCustomers();
 void releaseCustomers();
+void printProductsPerCustomer(Customer *);
 
 int main()
 {
@@ -24,24 +25,61 @@ int main()
     pointOfSaleOperations.insertCustomer(mostafa);
     pointOfSaleOperations.insertCustomer(mohamed);
 
+    // Andrew
     pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 10);
     pointOfSaleOperations.makeSellingOperation(CRISTAL_OIL_ID, 10);
     pointOfSaleOperations.makeSellingOperation(LIBTON_TEA_ID, 10);
+    pointOfSaleOperations.removeCustomer();
     cout << endl;
 
-    List<Product *> bp = andro->getBoughtProducts();
+    // Sara
+    pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 20);
+    pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 20);
+    pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 20);
+    pointOfSaleOperations.removeCustomer();
+    cout << endl;
 
-    bp.toFirst();
-    while (!bp.cursorIsEmpty())
-    {
-        Product *p;
-        bp.retireveData(p);
-        cout << p->getName() << endl;
-        cout << p->getId() << endl;
-        cout << p->getQuantity() << endl;
-        cout << endl;
-        bp.advance();
-    }
+    pointOfSaleOperations.removeProduct(MARAI_MILK_ID);
+
+    // Ahmed
+    pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 30);
+    pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 30);
+    pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 30);
+    Product milk(MARAI_MILK_ID, "almarai", "one litre", 15.5f, "1-12-2023", "1-12-2022", 1000);
+    pointOfSaleOperations.addProduct(milk);
+    pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 30);
+    pointOfSaleOperations.makeReturnOperation(MARAI_MILK_ID, 10);
+    pointOfSaleOperations.makeReturnOperation(MEGA_MOLTO_ID, 10);
+    pointOfSaleOperations.makeReturnOperation(SHAHIN_COFFEE_ID, 10);
+    pointOfSaleOperations.removeCustomer();
+    cout << endl;
+
+    pointOfSaleOperations.insertCustomer(ahmed);
+
+    pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 500);
+    pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 500);
+    pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 500);
+    pointOfSaleOperations.removeCustomer();
+    cout << endl;
+
+    pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 500);
+    pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 500);
+    pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 500);
+    pointOfSaleOperations.removeCustomer();
+    cout << endl;
+
+    pointOfSaleOperations.makeSellingOperation(MARAI_MILK_ID, 10);
+    pointOfSaleOperations.makeSellingOperation(MEGA_MOLTO_ID, 10);
+    pointOfSaleOperations.makeSellingOperation(SHAHIN_COFFEE_ID, 10);
+    pointOfSaleOperations.removeCustomer();
+    cout << endl;
+
+    printProductsPerCustomer(andro);
+    printProductsPerCustomer(sara);
+    printProductsPerCustomer(ahmed);
+    printProductsPerCustomer(mostafa);
+    printProductsPerCustomer(mohamed);
+
     releaseCustomers();
     return 0;
 }
@@ -67,6 +105,22 @@ void initCustomers()
     ahmed = new Customer(123, "Ahmed");
     mostafa = new Customer(124, "Mostafa");
     mohamed = new Customer(125, "Mohamed");
+}
+
+void printProductsPerCustomer(Customer *customer)
+{
+    cout << "products bought by: " << customer->getName() << endl;
+    int number = 1;
+    List<Product *> boughtProducts = customer->getBoughtProducts();
+    boughtProducts.toFirst();
+    while (!boughtProducts.cursorIsEmpty())
+    {
+        Product *product;
+        boughtProducts.retireveData(product);
+        cout << number++ << "- name: " << product->getName() << ", description: " << product->getDescripton() << ", quantity: " << product->getQuantity() << endl;
+        boughtProducts.advance();
+    }
+    cout<<endl;
 }
 
 void releaseCustomers()
