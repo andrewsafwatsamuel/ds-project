@@ -5,14 +5,14 @@
 #include "Customer.h"
 using namespace std;
 
-PointOfSaleOperations::PointOfSaleOperations(PointOfSale PointOfSale)
+PointOfSaleOperations::PointOfSaleOperations(PointOfSale&)
 {
     this->pointOfSale = pointOfSale;
 }
 
-void PointOfSaleOperations::insertCustomer(Customer Customer)
+void PointOfSaleOperations::insertCustomer(Customer &customer)
 {
-    customers.enqueue(Customer);
+    customers.enqueue(customer);
 }
 
 void PointOfSaleOperations::removeCustomer()
@@ -23,7 +23,7 @@ void PointOfSaleOperations::removeCustomer()
 
 void PointOfSaleOperations::addProduct(Product product)
 {
-    pointOfSale.addProduct(product);
+    pointOfSale.addProduct(&product);
 }
 
 void PointOfSaleOperations::removeProduct(Product product)
@@ -33,13 +33,13 @@ void PointOfSaleOperations::removeProduct(Product product)
 
 void PointOfSaleOperations::makeSellingOperation(int id, int quantity)
 {
-    Product product;
+    Product *product;
     pointOfSale.sellproduct(id, quantity, product);
-    if (product.getQuantity() > 0)
+    if (product->getQuantity() > 0)
     {
         Customer currentCustomer;
         customers.getFront(currentCustomer);
-        currentCustomer.addBoughtProduct(product);
+        currentCustomer.addBoughtProduct(*product);
     }
 }
 

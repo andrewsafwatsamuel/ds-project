@@ -10,17 +10,18 @@ class PointOfSale
 private:
     int id;
     string name;
-    List<Product> productList;
+    List<Product*> productList;
 
 public:
     PointOfSale();
     PointOfSale(int id, string name);
     string getName();
     int getId();
-    void addProduct(Product &);
+    void addProduct(Product *);
     void removeproduct(int);
-    void sellproduct(int, int, Product &);
+    void sellproduct(int, int, Product *);
     void returnproduct(int, int);
+    ~PointOfSale();
 };
 
 #include "PointOfSale.cpp"

@@ -11,8 +11,8 @@ private:
     PointOfSale pointOfSale;
 
 public:
-    PointOfSaleOperations(PointOfSale);
-    void insertCustomer(Customer);
+    PointOfSaleOperations(PointOfSale&);
+    void insertCustomer(Customer&);
     void removeCustomer();
     void addProduct(Product);
     void removeProduct(Product);

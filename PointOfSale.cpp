@@ -4,15 +4,14 @@ using namespace std;
 
 PointOfSale::PointOfSale()
 {
-
-  this->productList = List<Product>();
+  productList = List<Product *>();
   id = -1;
   name = "";
 }
 
 PointOfSale::PointOfSale(int id, string name)
 {
-  this->productList = List<Product>();
+  this->productList = List<Product *>();
   this->id = id;
   this->name = name;
 }
@@ -27,17 +26,17 @@ int PointOfSale::getId()
   return id;
 }
 
-void PointOfSale::addProduct(Product &product)
+void PointOfSale::addProduct(Product *product)
 {
   productList.toFirst();
   while (!productList.cursorIsEmpty())
   {
-    Product innerProduct;
+    Product *innerProduct;
     productList.retireveData(innerProduct);
-    if (product.getId() == innerProduct.getId())
+    if (product->getId() == innerProduct->getId())
     {
-      int productQuantity = product.getQuantity() + innerProduct.getQuantity();
-      innerProduct.setQuantity(productQuantity);
+      int productQuantity = product->getQuantity() + innerProduct->getQuantity();
+      innerProduct->setQuantity(productQuantity);
       return;
     }
     productList.advance();
@@ -50,18 +49,18 @@ void PointOfSale::removeproduct(int id)
   productList.toFirst();
   while (!productList.cursorIsEmpty())
   {
-    Product innerProduct;
+    Product *innerProduct;
     productList.retireveData(innerProduct);
-    if (innerProduct.getId() == id)
+    if (innerProduct->getId() == id)
     {
-      innerProduct.setQuantity(0);
+      innerProduct->setQuantity(0);
       return;
     }
     productList.advance();
   }
 }
 
-void PointOfSale::sellproduct(int id, int qty, Product &product)
+void PointOfSale::sellproduct(int id, int qty, Product *product)
 {
   if (productList.listIsEmpty())
   {
@@ -71,15 +70,16 @@ void PointOfSale::sellproduct(int id, int qty, Product &product)
   productList.toFirst();
   while (!productList.cursorIsEmpty())
   {
-    Product innerProduct;
+    Product *innerProduct;
     productList.retireveData(innerProduct);
-    if (innerProduct.getId() == id)
+
+    if (innerProduct->getId() == id)
     {
-      if (innerProduct.getQuantity() >= qty)
+      if (innerProduct->getQuantity() >= qty)
       {
-        product = Product(id, innerProduct.getName(), innerProduct.getDescripton(), innerProduct.getPrice(), innerProduct.getExpiryDate(), innerProduct.getProductionDate(), qty);
-        innerProduct.setQuantity(innerProduct.getQuantity() - qty);
-        cout << "Sold " << qty << " of " << innerProduct.getName() << endl;
+        product = new Product(id, innerProduct->getName(), innerProduct->getDescripton(), innerProduct->getPrice(), innerProduct->getExpiryDate(), innerProduct->getProductionDate(), qty);
+        innerProduct->setQuantity(innerProduct->getQuantity() - qty);
+        cout << "Sold " << qty << " of " << innerProduct->getName() << endl;
       }
       else
       {
@@ -90,6 +90,7 @@ void PointOfSale::sellproduct(int id, int qty, Product &product)
     }
     productList.advance();
   }
+  cout << "Product is not available" << endl;
 } // id, quantity
 
 void PointOfSale::returnproduct(int id, int qty)
@@ -97,13 +98,28 @@ void PointOfSale::returnproduct(int id, int qty)
   productList.toFirst();
   while (!productList.cursorIsEmpty())
   {
-    Product innerProduct;
+    Product *innerProduct;
     productList.retireveData(innerProduct);
-    if (innerProduct.getId() == id)
+    if (innerProduct->getId() == id)
     {
-      innerProduct.setQuantity(innerProduct.getQuantity() + qty);
+      innerProduct->setQuantity(innerProduct->getQuantity() + qty);
       return;
     }
     productList.advance();
+  }
+}
+
+PointOfSale::~PointOfSale()
+{
+  if (!productList.listIsEmpty())
+  {
+    productList.toFirst();
+    while (!productList.cursorIsEmpty())
+    {
+      Product *product;
+      productList.retireveData(product);
+      delete product;
+      productList.advance();
+    }
   }
 }
