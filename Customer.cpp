@@ -7,7 +7,7 @@ using namespace std;
 Customer::Customer()
 {
 	boughtProducts = List<Product *>();
-	id = 0;
+	id = -1;
 	name = "";
 }
 
