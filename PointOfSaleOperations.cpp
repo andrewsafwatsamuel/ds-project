@@ -55,3 +55,8 @@ void PointOfSaleOperations::makeReturnOperation(int id, int quantity)
         pointOfSale->returnproduct(product.getId(), product.getQuantity());
     }
 }
+
+PointOfSaleOperations::~PointOfSaleOperations(){
+    pointOfSale = NULL;
+    delete pointOfSale;
+}

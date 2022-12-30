@@ -18,6 +18,7 @@ public:
     void removeProduct(int);
     void makeReturnOperation(int, int);  // id, quantity
     void makeSellingOperation(int, int); // id, quantity
+    ~PointOfSaleOperations();
 };
 
 #include "PointOfSaleOperations.cpp"
