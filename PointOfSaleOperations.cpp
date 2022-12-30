@@ -23,7 +23,7 @@ void PointOfSaleOperations::removeCustomer()
 
 void PointOfSaleOperations::addProduct(Product product)
 {
-    pointOfSale.addProduct(&product);
+    pointOfSale.addProduct(product);
 }
 
 void PointOfSaleOperations::removeProduct(Product product)
@@ -34,7 +34,7 @@ void PointOfSaleOperations::removeProduct(Product product)
 void PointOfSaleOperations::makeSellingOperation(int id, int quantity)
 {
     Product product;
-    pointOfSale.sellproduct(id, quantity, &product);
+    pointOfSale.sellproduct(id, quantity, product);
     if (product.getQuantity() > 0)
     {
         Customer currentCustomer;
