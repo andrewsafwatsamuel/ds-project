@@ -117,6 +117,7 @@ void List<T>::deleteNode()
             temp = cursor;
             cursor = cursor->next;
             head = cursor;
+            temp = NULL;
             delete temp;
         }
         else
@@ -124,6 +125,7 @@ void List<T>::deleteNode()
             temp = cursor;
             cursor = cursor->next;
             previous->next = cursor;
+            temp = NULL;
             delete temp;
         }
     }

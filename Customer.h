@@ -17,6 +17,7 @@ public:
     int getId();
     void addBoughtProduct(Product &);
     void returnBoughtProduct(int, int, Product &); // id and quantity
+    List<Product*> getBoughtProducts();
     ~Customer();
 };
 

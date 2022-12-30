@@ -100,6 +100,11 @@ void Customer::returnBoughtProduct(int id, int quantity, Product &result)
 	cout << "The product not found" << endl;
 }
 
+
+List<Product*> Customer::getBoughtProducts(){
+	return boughtProducts;
+}
+
 Customer::~Customer()
 {
 	boughtProducts.toFirst();
