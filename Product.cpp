@@ -10,7 +10,8 @@ Product::Product()
 	this->price = 0.0f;
 	this->expiryDate = "";
 	this->productionDate = "";
-	this->quantity = 0;
+	this->quantity = new int;
+	*quantity=0;
 }
 
 Product::Product(int id, string name, string description, float price, string expiryDate, string productionDate, int quantity)
