@@ -4,80 +4,104 @@
 
 using namespace std;
 
-
-Customer::Customer(){
-	boughtProducts = List<Product>();
+Customer::Customer()
+{
+	boughtProducts = List<Product *>();
 	id = 0;
 	name = "";
 }
 
-Customer::Customer(int id, string name){
-	boughtProducts = List<Product>();
+Customer::Customer(int id, string name)
+{
+	boughtProducts = List<Product *>();
 	this->id = id;
 	this->name = name;
-	
 }
 
-
-int Customer::getId(){
+int Customer::getId()
+{
 	return id;
 }
 
-string Customer::getName(){
+string Customer::getName()
+{
 	return name;
 }
 
-void Customer::addBoughtProduct( Product &product){
+void Customer::addBoughtProduct(Product &product)
+{
 	int productid = product.getId(); // product id
 	boughtProducts.toFirst();
-		while(!boughtProducts.cursorIsEmpty()){
-		Product innerProduct;
+	while (!boughtProducts.cursorIsEmpty())
+	{
+		Product *innerProduct;
 		boughtProducts.retireveData(innerProduct);
-		if(innerProduct.getId() == productid){
-			int totalquantity = innerProduct.getQuantity() + product.getQuantity();
-			innerProduct.setQuantity(totalquantity);
-			return ;
+		if (innerProduct->getId() == productid)
+		{
+			int totalquantity = innerProduct->getQuantity() + product.getQuantity();
+			innerProduct->setQuantity(totalquantity);
+			return;
 		}
-		
+		boughtProducts.advance();
 	}
-	
-	boughtProducts.insertEnd(product);
-	
+	boughtProducts.insertFirst(&product);
 }
 
-void Customer::returnBoughtProduct(int id, int quantity, Product &result){
-	if(boughtProducts.listIsEmpty()){
+void Customer::returnBoughtProduct(int id, int quantity, Product &result)
+{
+	if (boughtProducts.listIsEmpty())
+	{
 		cout << "no products found" << endl;
 		return;
 	}
 	boughtProducts.toFirst();
-	while(!boughtProducts.cursorIsEmpty()){
-		Product product;
+	while (!boughtProducts.cursorIsEmpty())
+	{
+		Product *product;
 		boughtProducts.retireveData(product);
-		if(product.getId() == id){
-			if(product.getQuantity() >= quantity){
-				result = Product(id,product.getName(),product.getDescripton(),product.getPrice(),product.getExpiryDate(),product.getProductionDate(),quantity);
-				product.setQuantity(product.getQuantity() - quantity); 
+		if (product->getId() == id)
+		{
+			if (product->getQuantity() >= quantity)
+			{
+				result = Product(
+					id,
+					product->getName(),
+					product->getDescripton(),
+					product->getPrice(),
+					product->getExpiryDate(),
+					product->getProductionDate(),
+					quantity);
+				product->setQuantity(product->getQuantity() - quantity);
 			}
-			else{
-				result = Product(id,product.getName(),product.getDescripton(),product.getPrice(),product.getExpiryDate(),product.getProductionDate(),product.getQuantity());
-				product.setQuantity(0);
+			else
+			{
+				result = Product(
+					id,
+					product->getName(),
+					product->getDescripton(),
+					product->getPrice(),
+					product->getExpiryDate(),
+					product->getProductionDate(),
+					product->getQuantity());
+				product->setQuantity(0);
 			}
 			return;
 		}
+		boughtProducts.advance();
 	}
-	
+
 	cout << "The product not found" << endl;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+Customer::~Customer()
+{
+	boughtProducts.toFirst();
+	while (!boughtProducts.cursorIsEmpty())
+	{
+		Product *product;
+		boughtProducts.retireveData(product);
+		product = NULL;
+		delete product;
+		boughtProducts.advance();
+	}
+}

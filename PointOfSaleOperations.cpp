@@ -33,13 +33,13 @@ void PointOfSaleOperations::removeProduct(Product product)
 
 void PointOfSaleOperations::makeSellingOperation(int id, int quantity)
 {
-    Product *product;
-    pointOfSale.sellproduct(id, quantity, product);
-    if (product->getQuantity() > 0)
+    Product product;
+    pointOfSale.sellproduct(id, quantity, &product);
+    if (product.getQuantity() > 0)
     {
         Customer currentCustomer;
         customers.getFront(currentCustomer);
-        currentCustomer.addBoughtProduct(*product);
+        currentCustomer.addBoughtProduct(product);
     }
 }
 
