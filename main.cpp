@@ -84,18 +84,18 @@ int main()
     return 0;
 }
 
-void fillPointOfSaleProducts(PointOfSaleOperations &pointOfSale)
+void fillPointOfSaleProducts(PointOfSaleOperations &operations)
 {
     Product milk(MARAI_MILK_ID, "almarai", "one litre", 15.5f, "1-12-2023", "1-12-2022", 1000);
     Product oil(CRISTAL_OIL_ID, "cristal", "one litre", 40.5f, "1-12-2024", "1-12-2022", 1000);
     Product tea(LIBTON_TEA_ID, "libton", "one kilo", 15.5f, "1-12-2023", "1-12-2022", 1000);
     Product coffee(SHAHIN_COFFEE_ID, "shaheen", "one kilo", 150.5f, "1-12-2023", "1-12-2022", 1000);
     Product molto(MEGA_MOLTO_ID, "mega", "one piece", 5.5f, "1-12-2023", "1-12-2022", 1000);
-    pointOfSale.addProduct(milk);
-    pointOfSale.addProduct(oil);
-    pointOfSale.addProduct(tea);
-    pointOfSale.addProduct(coffee);
-    pointOfSale.addProduct(molto);
+    operations.addProduct(milk);
+    operations.addProduct(oil);
+    operations.addProduct(tea);
+    operations.addProduct(coffee);
+    operations.addProduct(molto);
 }
 
 void initCustomers()
